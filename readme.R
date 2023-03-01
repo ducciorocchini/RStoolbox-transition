@@ -1,3 +1,5 @@
+# Original code from: 
+# https://rspatial.org/raster/rs/3-basicmath.html#principal-component-analysis
 
 ###### RStoolbox transition
 
@@ -10,8 +12,8 @@ library(patchwork)
 
 test <- brick("~/Documents/lectures_and_seminars/images/andrew6.png")
 
-impl <- as.data.frame(test, xy=T)
-ggplot() + geom_raster(impl, mapping = aes(x=x, y=y, fill=andrew6_2)) + scale_fill_viridis(option='viridis')
+testd <- as.data.frame(test, xy=T)
+ggplot() + geom_raster(testd, mapping = aes(x=x, y=y, fill=andrew6_2)) + scale_fill_viridis(option='viridis')
 
 
 # PCA
@@ -32,22 +34,20 @@ pca
 pci <- predict(test, pca, index = 1:2)
 plot(pci[[1]])
 
-impl <- as.data.frame(pci[[1]], xy=T)
-ggplot() + geom_raster(impl, mapping = aes(x = x, y = y, fill = PC1)) + scale_fill_viridis()
+testdp <- as.data.frame(pci[[1]], xy=T)
+ggplot() + geom_raster(testdp, mapping = aes(x = x, y = y, fill = PC1)) + scale_fill_viridis()
 
-p1 <- ggplot() + geom_raster(impl, mapping = aes(x = x, y = y, fill = PC1)) + scale_fill_viridis(option="magma")
+p1 <- ggplot() + geom_raster(testdp, mapping = aes(x = x, y = y, fill = PC1)) + scale_fill_viridis(option="magma")
 
-impl2 <- as.data.frame(pci[[2]], xy=T)
-p2 <- ggplot() + geom_raster(impl2, mapping = aes(x = x, y = y, fill = PC2)) + scale_fill_viridis(option="magma")
+testdp2 <- as.data.frame(pci[[2]], xy=T)
+p2 <- ggplot() + geom_raster(testdp2, mapping = aes(x = x, y = y, fill = PC2)) + scale_fill_viridis(option="magma")
 
 p1 + p2 
 
 #Classification
 library(raster)
-landsat5 <- stack('data/rs/centralvalley-2011LT5.tif')
-names(landsat5) <- c('blue', 'green', 'red', 'NIR', 'SWIR1', 'SWIR2')
 
-https://rspatial.org/raster/rs/4-unsupclassification.html
+# https://rspatial.org/raster/rs/4-unsupclassification.html
 
 # convert to matrix
 nr <- getValues(test)
@@ -84,7 +84,7 @@ plot(knr)
 # plot_graticule
 # rast
 # RGB
-zonal
+# zonal
 
 # Nice analyses here:
 https://rspatial.org/raster/rs/3-basicmath.html#principal-component-analysis
