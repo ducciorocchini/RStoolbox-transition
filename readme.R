@@ -108,8 +108,6 @@ cl <- colorRampPalette(c('yellow','black','red'))(100)
 plot(gcclass, col=cl)
 
 frequencies <- freq(gcclass)
-tot = 58076148
-percentages = frequencies * 100 /  tot
 
 # Exercise: classify the map with 4 classes
 
